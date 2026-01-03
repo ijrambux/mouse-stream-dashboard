@@ -1,0 +1,11 @@
+FROM postgres:15-alpine
+
+# Set environment variables
+ENV POSTGRES_USER=mousestream
+ENV POSTGRES_DB=mousestream_db
+
+# Copy initialization scripts
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Expose port
+EXPOSE 5432
