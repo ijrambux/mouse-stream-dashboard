@@ -1,0 +1,71 @@
+services:
+  # Main Web Service
+  - type: web
+    name: mouse-stream-dashboard
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+    autoDeploy: true
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+
+  # Database Service (اختياري)
+  - type: pserv
+    name: mouse-stream-db
+    env: docker
+    plan: free
+    disk:
+      name: postgres-data
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 1
+    dockerfilePath: ./Dockerfile.postgres
+    envVars:
+      - key: POSTGRES_PASSWORD
+        generateValue: true
+      - key: POSTGRES_USER
+        value: mousestream
+      - key: POSTGRES_DB
+        value: mousestream_db
+
+  # Redis Cache (اختياري)
+  - type: pserv
+    name: mouse-stream-cache
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.redis
+    envVars:
+      - key: REDIS_PASSWORD
+        generateValue: true
+
+databases:
+  # إذا كنت تريد قاعدة بيانات مجانية
+  - name: mousestream-database
+    plan: free
+    databaseName: mousestream
+    user: mousestream_admin
+
+envVarGroups:
+  - name: production
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mousestream-database
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: mouse-stream-cache
+          type: pserv
+          property: host
