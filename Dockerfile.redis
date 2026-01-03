@@ -1,0 +1,10 @@
+FROM redis:7-alpine
+
+# Set Redis password
+RUN echo "requirepass ${REDIS_PASSWORD}" > /usr/local/etc/redis/redis.conf
+
+# Expose port
+EXPOSE 6379
+
+# Start Redis
+CMD ["redis-server", "/usr/local/etc/redis/redis.conf"]
