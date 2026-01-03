@@ -1,37 +1,12 @@
 {
   "name": "mouse-stream-dashboard",
-  "version": "2.0.0",
-  "description": "لوحة تحكم متكاملة لإدارة منصة البث المباشر",
-  "main": "server/index.js",
+  "version": "1.0.0",
+  "description": "لوحة تحكم مبسطة للبث المباشر",
+  "main": "index.html",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js",
-    "build": "echo 'Build completed'",
-    "test": "echo 'No tests specified'"
+    "start": "echo 'Static HTML site - no build required'"
   },
-  "keywords": ["streaming", "dashboard", "iptv", "admin"],
+  "keywords": ["streaming", "dashboard", "iptv"],
   "author": "Mouse Stream Team",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "mongoose": "^7.0.3",
-    "socket.io": "^4.6.1",
-    "express-session": "^1.17.3",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.0",
-    "helmet": "^7.0.0",
-    "compression": "^1.7.4",
-    "morgan": "^1.10.0",
-    "express-rate-limit": "^6.7.1",
-    "express-validator": "^6.15.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
-  }
+  "license": "MIT"
 }
