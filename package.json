@@ -1,12 +1,8 @@
 {
-  "name": "mouse-stream-dashboard",
+  "name": "mouse-stream-static",
   "version": "1.0.0",
-  "description": "لوحة تحكم مبسطة للبث المباشر",
-  "main": "index.html",
+  "description": "Static HTML site for Mouse Stream",
   "scripts": {
-    "start": "echo 'Static HTML site - no build required'"
-  },
-  "keywords": ["streaming", "dashboard", "iptv"],
-  "author": "Mouse Stream Team",
-  "license": "MIT"
+    "start": "echo 'Static site - no server required'"
+  }
 }
