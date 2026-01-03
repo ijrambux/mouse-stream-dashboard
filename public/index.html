@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <!-- نفس المحتوى السابق مع إضافة -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // إضافة فحص الاتصال
+        document.addEventListener('DOMContentLoaded', function() {
+            // فحص حالة الخادم
+            fetch('/health')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('✅ Server health:', data);
+                    document.getElementById('server-status').textContent = '🟢 متصل';
+                })
+                .catch(error => {
+                    console.error('❌ Server connection failed:', error);
+                    document.getElementById('server-status').textContent = '🔴 غير متصل';
+                });
+        });
+    </script>
+</head>
+<body>
+    <!-- نفس المحتوى السابق -->
+</body>
+</html>
